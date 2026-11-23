@@ -49,6 +49,9 @@ try {
         } finally {$document.Close(0)}
         $bytes=[IO.File]::ReadAllBytes($entry.output)
         if($bytes.Length -lt 1024 -or [Text.Encoding]::ASCII.GetString($bytes,0,5) -ne '%PDF-') {throw 'Invalid PDF export'}
+        $entry.preview=Join-Path $work ($entry.item.id+'-preview')
+        $python=if($config.python){$config.python}else{'python'}
+        Run $python @((Join-Path $PSScriptRoot 'render-preview.py'),$entry.output,$entry.preview)
       }
     } finally {$word.Quit()}
     $manifestPath=Join-Path $repoRoot 'docs/documents.json'
@@ -56,6 +59,10 @@ try {
     foreach($entry in $changed) {
       $id=$entry.item.id
       Copy-Item -LiteralPath $entry.output -Destination "docs/files/$id.pdf" -Force
+      $previewPath="docs/previews/$id"
+      New-Item -ItemType Directory -Path $previewPath -Force | Out-Null
+      foreach($i in 1..$entry.pages) {Copy-Item -LiteralPath (Join-Path $entry.preview "page-$i.webp") -Destination "$previewPath/page-$i.webp" -Force}
+      Copy-Item -LiteralPath (Join-Path $entry.preview 'text.json') -Destination "$previewPath/text.json" -Force
       $manifest.documents[$id]=@{title=$entry.item.title;file="files/$id.pdf";sha256=(Get-FileHash "docs/files/$id.pdf").Hash.ToLower();pages=$entry.pages;updatedAt=([TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTime]::UtcNow,'Korea Standard Time').ToString('yyyy-MM-dd HH:mm'));version=[IO.Path]::GetFileNameWithoutExtension($entry.source)}
     }
     $manifest | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $manifestPath -Encoding utf8

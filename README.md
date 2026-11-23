@@ -12,7 +12,7 @@
 
 ## 업데이트
 
-Windows에 Microsoft Word, PowerShell 7, Git, 인증된 GitHub CLI가 필요합니다. 먼저 저장소를 체크아웃한 뒤 `config.example.json`을 `config.local.json`으로 복사하고 두 문서의 정확한 경로를 지정합니다. 상대 경로는 저장소 루트 기준입니다.
+Windows에 Microsoft Word, PowerShell 7, Git, 인증된 GitHub CLI, Python의 pdf2image·pypdf·Pillow 및 Poppler가 필요합니다. 먼저 저장소를 체크아웃한 뒤 `config.example.json`을 `config.local.json`으로 복사하고 두 문서의 정확한 경로를 지정합니다. 상대 경로는 저장소 루트 기준입니다. Python이 PATH에 없으면 로컬 설정에 python 키로 실행 파일의 절대 경로를 지정합니다. 문서 미리보기는 같은 PDF에서 생성한 페이지 이미지로 표시해 내장 PDF 뷰어가 없는 모바일·앱에서도 읽을 수 있게 했습니다. 직접 열기는 원본 PDF를 제공합니다.
 
 ```powershell
 pwsh -File scripts/publish.ps1
