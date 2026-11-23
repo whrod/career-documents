@@ -7,8 +7,9 @@ New-Item -ItemType Directory -Path $work -Force | Out-Null
 $mutex=New-Object Threading.Mutex($false,'Local\KyoungchanCareerPublish')
 if (!$mutex.WaitOne(0)) {exit 0}
 function Run([string]$Exe,[string[]]$Arguments) {
-  & $Exe @Arguments
-  if($LASTEXITCODE -ne 0) {throw "$Exe failed with exit code $LASTEXITCODE"}
+  $result=& $Exe @Arguments 2>&1
+  if($LASTEXITCODE -ne 0) {throw ("$Exe failed with exit code $LASTEXITCODE : "+($result | Out-String))}
+  if($result) {Write-Output $result}
 }
 function Read-SharedBytes([string]$Path) {
   $stream=[IO.File]::Open($Path,[IO.FileMode]::Open,[IO.FileAccess]::Read,([IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete))
@@ -51,7 +52,7 @@ try {
         if($bytes.Length -lt 1024 -or [Text.Encoding]::ASCII.GetString($bytes,0,5) -ne '%PDF-') {throw 'Invalid PDF export'}
         $entry.preview=Join-Path $work ($entry.item.id+'-preview')
         $python=if($config.python){$config.python}else{'python'}
-        Run $python @((Join-Path $PSScriptRoot 'render-preview.py'),$entry.output,$entry.preview)
+        Run $python @((Join-Path $PSScriptRoot 'render-preview.py'),$entry.output,$entry.preview,[string]$config.poppler)
       }
     } finally {$word.Quit()}
     $manifestPath=Join-Path $repoRoot 'docs/documents.json'

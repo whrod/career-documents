@@ -8,7 +8,7 @@ from pypdf import PdfReader
 source, output = map(Path, sys.argv[1:3])
 output.mkdir(parents=True, exist_ok=True)
 reader = PdfReader(source)
-pages = convert_from_path(source, dpi=150)
+pages = convert_from_path(source, dpi=150, poppler_path=sys.argv[3] if len(sys.argv)>3 and sys.argv[3] else None)
 for i, image in enumerate(pages, 1):
     image.save(output / f'page-{i}.webp', 'WEBP', quality=90)
 texts = [(p.extract_text() or '') for p in reader.pages]

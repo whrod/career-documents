@@ -9,12 +9,12 @@
       "title": "대표 이력서"
     },
     "career": {
-      "sha256": "f593b18ab384ee9bde5940b85cfe7e171d4f164656a7c674a847c4be16f974ea",
-      "file": "files/career.pdf",
       "version": "조경찬_PM_경력기술서_v11_2026-11-23",
+      "updatedAt": "2026-11-23 14:26",
+      "sha256": "9296b22c9ca51b5c66d98dc6ffe45ecb60e31e8648c6472b3795e58cba8a7cfe",
+      "title": "경력기술서",
       "pages": 3,
-      "updatedAt": "2026-11-23 14:24",
-      "title": "경력기술서"
+      "file": "files/career.pdf"
     }
   }
 }
