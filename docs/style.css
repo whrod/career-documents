@@ -2,3 +2,4 @@
 
 .pdf-pages{flex:1;min-height:0;overflow:auto;padding:28px 20px;background:#e5e8eb}.pdf-page{margin:0 auto 24px;max-width:940px}.pdf-page img{display:block;width:100%;height:auto;background:white;box-shadow:0 3px 18px #20304020}.pdf-page figcaption{text-align:center;margin:12px;font-size:13px;color:#596971}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:pre-wrap}@media(max-width:720px){.pdf-pages{padding:12px 8px}.pdf-page{margin-bottom:12px}}
 
+.viewer{overflow:hidden}.pdf-pages{position:relative}
