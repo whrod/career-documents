@@ -1,0 +1,7 @@
+{
+  "repository": "whrod/career-documents",
+  "documents": [
+    {"id":"resume","title":"대표 이력서","source":"../../제출서류/조경찬_PM_대표이력서_v11_2026-11-22.docx"},
+    {"id":"career","title":"경력기술서","source":"../../제출서류/조경찬_PM_경력기술서_v11_2026-11-23.docx"}
+  ]
+}

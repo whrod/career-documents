@@ -1,0 +1,20 @@
+{
+  "documents": {
+    "resume": {
+      "version": "조경찬_PM_대표이력서_v11_2026-11-22",
+      "pages": 1,
+      "title": "대표 이력서",
+      "file": "files/resume.pdf",
+      "updatedAt": "2026-11-23 14:21",
+      "sha256": "e457e72ae50f078ca9e16bbf6711f0d9259e87c15c0f02527572297ea88bfb90"
+    },
+    "career": {
+      "version": "조경찬_PM_경력기술서_v11_2026-11-23",
+      "pages": 3,
+      "title": "경력기술서",
+      "file": "files/career.pdf",
+      "updatedAt": "2026-11-23 14:21",
+      "sha256": "cc630ec28faa0ec8c307a6cb67804fbb7e3973b7a7c6964d5a5803b6af899128"
+    }
+  }
+}
